@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 5.1</title>
+    <style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+#app {
+  max-width: 200px;
+  margin: 0 auto;
+  padding: 50px;
+  line-height: 30px;
+  letter-spacing: 2px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  font-weight: 700;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+h1{
+  text-shadow: 1px 2px grey;
+  margin-left:90px;
+}
+       
+    </style>
+</head>
+<body>
+    <h1> The frist 3 words are:</h1>
+    <div id="app"></div>
+    <script>
+      var paragraph=`	In the starter code, some comments start with the words "TO DO." This is where you could add your lines of codes to solve this assignment.
+	The words will need to be scrubbed of any punctuation. To do so, you may choose to use regex and "replace", or you may choose to get rid of any punctuation marks another way. It is up to you!
+	Watch out for casing. The JavaScript compiler does not think a lowercase and an uppercase letter are the same letter the way humans do. To avoid this, set the entire string to be in lowercase.
+`
+
+var paralower=paragraph.toLowerCase();
+var anotherPara=paralower.replace(/[.,!\/;:"\n|\t]/g,' ');
+var splitpara=anotherPara.split (" ").filter(word => word !== "");
+let counter={};
+for (let i=0;i<splitpara.length;i++){
+   let str=splitpara[i];
+   if( str in counter){
+    counter[str]++;
+   }
+   else{
+    counter[str]=1
+   } 
+}
+var arr = Object.entries(counter);
+for (let i =0;i <arr.length -1; i++) {
+   for (let j = i + 1; j<arr.length; j++) {
+      if (arr[i][1] < arr[j][1]) {
+         let temp= arr[i];
+         arr[i]=arr[j];
+         arr[j]=temp;
+      }
+   }
+}
+var result=print(arr);
+function print(arr){
+    let output=""
+    for(let i=0;i<3;i++){
+output+=arr[i][0]+":"+arr[i][1]+"<br>"
+    }
+    return output
+    }
+    document.getElementById("app").innerHTML=result;
+        </script>
+</body>
+</html>
